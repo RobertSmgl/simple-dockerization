@@ -5,15 +5,16 @@ stages:
 build:
   stage: build-image
   script:
-    - cd springboot-backend && docker build -t $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend .
-    - cd ../react-frontend && docker build -t $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend . && cd ..
-    - docker tag $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend:$CI_COMMIT_SHORT_SHA
-    - docker tag $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend:$CI_COMMIT_SHORT_SHA
+    - echo $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend
+#     - cd springboot-backend && docker build -t $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend .
+#     - cd ../react-frontend && docker build -t $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend . && cd ..
+#     - docker tag $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend:$CI_COMMIT_SHORT_SHA
+#     - docker tag $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend:$CI_COMMIT_SHORT_SHA
 
-push-to-registry:
-  stage: push-image
-  script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker push $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend && docker push $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend:$CI_COMMIT_SHORT_SHA
-    - docker push $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend && docker push $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend:$CI_COMMIT_SHORT_SHA
-    - docker logout
+# push-to-registry:
+#   stage: push-image
+#   script:
+#     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+#     - docker push $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend && docker push $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend:$CI_COMMIT_SHORT_SHA
+#     - docker push $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend && docker push $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend:$CI_COMMIT_SHORT_SHA
+#     - docker logout
