@@ -8,7 +8,7 @@ services:
       MYSQL_PASSWORD: test
       MYSQL_ALLOW_EMPTY_PASSWORD: true
   backend:
-    build: registry.gitlab.com/rsamigullin/dev-tools-simple-ci/master/service-backend
+    build: registry.gitlab.com/rsamigullin/dev-tools-simple-ci/sdfsdfsdfsdfsdfsdfsdf/service-backend
     restart: always
     ports:
       - "8080:8080"

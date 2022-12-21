@@ -1,0 +1,10 @@
+stages:
+  - build-image
+  - push-image
+
+build:
+  stage: build-image
+  script:
+    #- cd springboot-backend && docker build -t $CI_REGISTRY/$CI_REGISTRY_USER/dev-tools-simple-ci/$CI_COMMIT_BRANCH/service-backend
+    #- docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - echo $$CI_REGISTRY
