@@ -5,15 +5,15 @@ stages:
 build:
   stage: build-image
   script:
-    - cd $CI_BUILDS_DIR/springboot-backend && docker build -t $($CI_PROJECT_URL | sed -e "s/https:\/\///g)/$CI_COMMIT_BRANCH/service-backend .
-    - cd $CI_BUILDS_DIR/react-frontend && docker build -t $($CI_PROJECT_URL | sed -e "s/https:\/\///g)/$CI_COMMIT_BRANCH/service-frontend .
-    - docker tag $($CI_PROJECT_URL | sed -e "s/https:\/\///g)/$CI_COMMIT_BRANCH/service-backend:$CI_COMMIT_SHORT_SHA
-    - docker tag $($CI_PROJECT_URL | sed -e "s/https:\/\///g)/$CI_COMMIT_BRANCH/service-frontend:$CI_COMMIT_SHORT_SHA
+    - cd $CI_BUILDS_DIR/springboot-backend && docker build -t $($CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend .
+    - cd $CI_BUILDS_DIR/react-frontend && docker build -t $($CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend .
+    - docker tag $($CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend:$CI_COMMIT_SHORT_SHA
+    - docker tag $($CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend:$CI_COMMIT_SHORT_SHA
 
 push-to-registry:
   stage: push-image
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker push $($CI_PROJECT_URL | sed -e "s/https:\/\///g)/$CI_COMMIT_BRANCH/service-backend && docker push $($CI_PROJECT_URL | sed -e "s/https:\/\///g)/$CI_COMMIT_BRANCH/service-backend:$CI_COMMIT_SHORT_SHA
-    - docker push $($CI_PROJECT_URL | sed -e "s/https:\/\///g)/$CI_COMMIT_BRANCH/service-frontend && docker push $($CI_PROJECT_URL | sed -e "s/https:\/\///g)/$CI_COMMIT_BRANCH/service-frontend:$CI_COMMIT_SHORT_SHA
+    - docker push $($CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend && docker push $($CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend:$CI_COMMIT_SHORT_SHA
+    - docker push $($CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend && docker push $($CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend:$CI_COMMIT_SHORT_SHA
     - docker logout
