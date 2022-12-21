@@ -8,12 +8,12 @@ services:
       MYSQL_PASSWORD: test
       MYSQL_ALLOW_EMPTY_PASSWORD: true
   backend:
-    build: registry.gitlab.com/rsamigullin/dev-tools-simple-ci/master/service-backend
+    image: https://gitlab.com/rsamigullin/dev-tools-simple-ci/master/service-backend
     restart: always
     ports:
       - "8080:8080"
   frontend: 
-    build: registry.gitlab.com/rsamigullin/dev-tools-simple-ci/master/service-frontend
+    image: registry.gitlab.com/rsamigullin/dev-tools-simple-ci/master/service-frontend
     environment:
       NODE_OPTIONS: --openssl-legacy-provider
     ports:
