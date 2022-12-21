@@ -7,8 +7,8 @@ build:
   script:
     - cd springboot-backend && docker build -t $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend .
     - cd ../react-frontend && docker build -t $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend . && cd ..
-    - docker tag $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend:$CI_COMMIT_SHORT_SHA
-    - docker tag $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend:$CI_COMMIT_SHORT_SHA
+    - docker tag $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-backend:$CI_COMMIT_SHORT_SHA
+    - docker tag $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend $(echo $CI_PROJECT_URL | sed -e "s/https:\/\///g")/$CI_COMMIT_BRANCH/service-frontend:$CI_COMMIT_SHORT_SHA
 
 push-to-registry:
   stage: push-image
