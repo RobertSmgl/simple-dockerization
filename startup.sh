@@ -6,3 +6,4 @@ docker pull registry.gitlab.com/rsamigullin/dev-tools-simple-ci/$(git branch --s
 sed -i -e "s/registry.gitlab.com\/rsamigullin\/dev-tools-simple-ci\/.*\/service-frontend/registry.gitlab.com\/rsamigullin\/dev-tools-simple-ci\/$(git branch --show-current)\/service-frontend/g" docker-compose.yml
 sed -i -e "s/registry.gitlab.com\/rsamigullin\/dev-tools-simple-ci\/.*\/service-backend/registry.gitlab.com\/rsamigullin\/dev-tools-simple-ci\/$(git branch --show-current)\/service-backend/g" docker-compose.yml
 docker logout
+docker compose up -d
